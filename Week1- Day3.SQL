@@ -4,7 +4,10 @@ where country = 'Germany'
 
 
 "Show product names and their unit prices"
-select product_name, unit_price
-from products
+SELECT product_name, unit_price
+FROM products
 
-
+"Find all orders placed in 2017"
+select *
+from orders
+where year(order_date) = 2017;
