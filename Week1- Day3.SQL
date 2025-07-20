@@ -17,3 +17,8 @@ select *
 from products
 where units_in_stock < 20;
 
+"Get all customers who have placed more than 5 orders" 
+select *, COUNT(*) as customer_orders
+from orders
+group by customer_id
+having count(*) > 5;
