@@ -11,3 +11,8 @@ FROM products
 select *
 from orders
 where year(order_date) = 2017;
+
+"List-all-products-with-fewer-than-20-units-in-stock"
+select *
+~from products
+~where units_in_stock < 20;
