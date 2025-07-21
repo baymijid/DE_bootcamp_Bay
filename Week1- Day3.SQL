@@ -60,3 +60,31 @@ LEFT JOIN order_details AS od
   ON p.product_id = od.product_id
 WHERE od.product_id IS NULL
 ORDER BY p.product_name;
+
+
+
+"Monthly Sales Report by Category and Country
+Objective: Join orders, order_details, products, categories, and customers. Aggregate sales grouped by month, category, and customer country.
+Generate a monthly report showing total sales amount by product category and customer country. Show only months with more than $10,000 in sales.”"
+
+SELECT 
+	month(o.order_date),
+    c.category_name, 
+    cs.country,
+    sum(od.quantity * p.unit_price) as total_sales
+
+FROM orders AS o 
+	JOIN order_details AS od 	ON o.order_id = od.order_id
+	join products as p 			on p.product_id=od.product_id
+	join categories as c 		on c.category_id=p.category_id
+	join customers as cs 		on cs.customer_id=o.customer_id
+group by 
+	month(o.order_date), 
+    c.category_name, 
+    cs.country
+having
+	sum(od.quantity * p.unit_price) > 10000
+order by
+	month(o.order_date),
+	c.category_name,
+	cs.country;
