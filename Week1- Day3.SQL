@@ -43,4 +43,20 @@ from products
 order by unit_price desc
 limit 5
 
+"Show total sales per employee"
+select o.employee_id, sum(od.quantity * p.unit_price)
+from employees as e
+inner join orders  as o on o.employee_id=e.employee_id
+inner join order_details as od on od.order_id=o.order_id
+inner join products as p on p.product_id=od.product_id
+group by e.employee_id 
 
+"Show products that have never been ordered"
+SELECT
+  p.product_id,
+  p.product_name
+FROM products AS p
+LEFT JOIN order_details AS od
+  ON p.product_id = od.product_id
+WHERE od.product_id IS NULL
+ORDER BY p.product_name;
