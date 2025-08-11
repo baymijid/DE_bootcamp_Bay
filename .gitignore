@@ -1,0 +1,7 @@
+.ipynb_checkpoints
+.pvenv
+
+
+Directories to ignore
+week2/day9/logs/
+postgres-data/
